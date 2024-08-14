@@ -6,8 +6,8 @@ import json
 def parse():
     parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
 
-    parser.add_argument(metavar='first_file', dest='first_file')
-    parser.add_argument(metavar='second_file', dest='second_file')
+    parser.add_argument('first_file', metavar='first_file')
+    parser.add_argument('second_file', metavar='second_file')
     parser.add_argument("-f", "--format", metavar="FORMAT",
                     help="set format of output")
 
@@ -15,11 +15,11 @@ def parse():
 #print(args.accumulate(args.integers))
 
 
-file1 = json.load(open('gendiff/scripts/file1.json'))
-file2 = json.load(open('gendiff/scripts/file2.json'))
+#file1 = json.load(open('gendiff/scripts/file1.json'))
+#file2 = json.load(open('gendiff/scripts/file2.json'))
 def main():
     args = parse()
-    print(generate_diff(args.first_file, args.second_file))
+    print(generate_diff(json.load(open(args.first_file)), json.load(open(args.second_file))))
 
 
 if __name__ == '__main__':
