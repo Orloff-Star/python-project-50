@@ -1,4 +1,4 @@
-name: Python CI
+name: python-project-50
 
 on:
   - push
@@ -13,10 +13,10 @@ jobs:
         python-version: [3.8, 3.9]
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python 
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version:
         # make depends on poetry
       - name: Install dependencies
         run: |
@@ -29,7 +29,7 @@ jobs:
         uses: paambaati/codeclimate-action@v5.0.0
         if: github.ref_name == 'main'
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          CC_TEST_REPORTER_ID: ecd19bac074849a108d2c1bc93c84cb3c5eff470daaaf91adc6688f8794dbe76
         with:
           coverageCommand: make test-coverage
           debug: true
