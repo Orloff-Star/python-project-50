@@ -2,6 +2,7 @@ from gendiff import generate_diff
 import pytest
 import os
 import json
+import yaml
 
 
 def get_fixture_path(file_name):
@@ -16,9 +17,17 @@ def read(file_path):
 
 
 result = read(get_fixture_path('Expected_output_generate_diff.txt'))
-file1 = json.load(open('tests/fixtures/file1.json'))
-file2 = json.load(open('tests/fixtures/file2.json'))
+file1_json = json.load(open('tests/fixtures/file1.json'))
+file2_json = json.load(open('tests/fixtures/file2.json'))
 
 
 def test_generate_diff():
-    assert generate_diff(file1, file2) == result
+    assert generate_diff(file1_json, file2_json) == result
+
+
+file1_yaml = yaml.safe_load(open('tests/fixtures/file1.yaml'))
+file2_yaml = yaml.safe_load(open('tests/fixtures/file2.yaml'))
+
+
+def test_generate_diff():
+    assert generate_diff(file1_yaml, file2_yaml) == result

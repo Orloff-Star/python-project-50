@@ -35,3 +35,10 @@ def generate_diff(file_one, file_two):
         sub_result = f'\n{key}: {val}'
         result += sub_result
     return f'{{{result}\n}}'
+
+'''import json
+file1 = json.load(open('tests/fixtures/file1.json'))
+file2 = json.load(open('tests/fixtures/file1.yaml'))
+
+print(file1)
+print(file2)'''
