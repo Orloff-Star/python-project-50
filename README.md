@@ -22,3 +22,7 @@ https://asciinema.org/a/Kk96Bjc9TA18qzJmJ37YDcn1z
 Demo step five:
 https://asciinema.org/a/32qE0gZRMa7SQFBszURNmOxJf
 
+Demo step six:
+https://asciinema.org/a/2mc3HV3iJBlVdOu9rkMlTakeE
+
+
