@@ -9,31 +9,21 @@ def get_normalise_string(string):
         return string
 
 
-def comparison_dict(file_one, file_two):
-    keys = file_one.keys() | file_two.keys()
+def stylish_dict(diff):
     differences = {}
-    for key in keys:
-        if key in file_one and key in file_two:
-            if isinstance(file_one[key], dict) and isinstance(
-                    file_two[key], dict):
-                differences[f'    {key}'] = comparison_dict(
-                    file_one[key], file_two[key])
-            else:
-                if file_one[key] == file_two[key]:
-                    differences[f'    {key}'] = get_normalise_string(
-                        file_one[key])
-                if file_one[key] != file_two[key]:
-                    key1 = f'  - {key}'
-                    differences[key1] = get_normalise_string(file_one[key])
-                    key2 = f'  + {key}'
-                    differences[key2] = get_normalise_string(file_two[key])
-        if key in file_one and key not in file_two:
-            differences[f'  - {key}'] = get_normalise_string(file_one[key])
-        if key not in file_one and key in file_two:
-            differences[f'  + {key}'] = get_normalise_string(file_two[key])
-    differences_sort = dict(sorted(
-        differences.items(), key=lambda x: (x[0][4:])))
-    return differences_sort
+    for i in diff:
+        if i['meaning'] == 'dicts':
+            differences[f"    {i['key']}"] = stylish_dict(i['value'])
+        if i['meaning'] == 'identical':
+            differences[f"    {i['key']}"] = get_normalise_string(i['value'])
+        if i['meaning'] == 'update':
+            differences[f"  - {i['key']}"] = get_normalise_string(i['old'])
+            differences[f"  + {i['key']}"] = get_normalise_string(i['new'])
+        if i['meaning'] == 'deleted':
+            differences[f"  - {i['key']}"] = get_normalise_string(i['old'])
+        if i['meaning'] == 'added':
+            differences[f"  + {i['key']}"] = get_normalise_string(i['new'])
+    return differences
 
 
 def get_format_dict(my_dict, depth=0):

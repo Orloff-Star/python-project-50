@@ -25,4 +25,5 @@ https://asciinema.org/a/32qE0gZRMa7SQFBszURNmOxJf
 Demo step six:
 https://asciinema.org/a/2mc3HV3iJBlVdOu9rkMlTakeE
 
-
+Demo step seven
+https://asciinema.org/a/m2o2xqFjmVyWV4q84Juajj8gK

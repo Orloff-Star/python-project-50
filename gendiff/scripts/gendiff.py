@@ -8,7 +8,8 @@ def main():
     args = parse()
     print(generate_diff(
         get_convert_file_to_dict(args.first_file),
-        get_convert_file_to_dict(args.second_file)
+        get_convert_file_to_dict(args.second_file),
+        args.format
     ))
 
 
