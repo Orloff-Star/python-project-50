@@ -3,6 +3,7 @@ from gendiff.formarter.formarter_yaml import get_convert_file_to_dict
 from gendiff.scripts.parser import parse
 from gendiff.formarter.stylish import stylish_dict, get_all_keys
 from gendiff.formarter.plain import plain_dict
+from gendiff.formarter.json import json_dict
 
 
 __all__ = (
@@ -11,5 +12,6 @@ __all__ = (
     'parse',
     'stylish_dict',
     'get_all_keys',
-    'plain_dict'
+    'plain_dict',
+    'json_dict'
 )
