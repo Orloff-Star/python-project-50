@@ -1,4 +1,4 @@
-def get_normalise_string(string):
+def format_value(string):
     if isinstance(string, bool):
         return str(string).lower()
     elif isinstance(string, int):
@@ -9,20 +9,26 @@ def get_normalise_string(string):
         return string
 
 
-def stylish_dict(diff):
+def convert_to_stylish(diff):
     differences = {}
-    for i in diff:
-        if i['meaning'] == 'dicts':
-            differences[f"    {i['key']}"] = stylish_dict(i['value'])
-        if i['meaning'] == 'identical':
-            differences[f"    {i['key']}"] = get_normalise_string(i['value'])
-        if i['meaning'] == 'update':
-            differences[f"  - {i['key']}"] = get_normalise_string(i['old'])
-            differences[f"  + {i['key']}"] = get_normalise_string(i['new'])
-        if i['meaning'] == 'deleted':
-            differences[f"  - {i['key']}"] = get_normalise_string(i['old'])
-        if i['meaning'] == 'added':
-            differences[f"  + {i['key']}"] = get_normalise_string(i['new'])
+    for item in diff:
+        if item['meaning'] == 'dicts':
+            differences[f"    {item['key']}"
+                        ] = convert_to_stylish(item['value'])
+        if item['meaning'] == 'identical':
+            differences[f"    {item['key']}"
+                        ] = format_value(item['value'])
+        if item['meaning'] == 'update':
+            differences[f"  - {item['key']}"
+                        ] = format_value(item['old'])
+            differences[f"  + {item['key']}"
+                        ] = format_value(item['new'])
+        if item['meaning'] == 'deleted':
+            differences[f"  - {item['key']}"
+                        ] = format_value(item['old'])
+        if item['meaning'] == 'added':
+            differences[f"  + {item['key']}"
+                        ] = format_value(item['new'])
     return differences
 
 

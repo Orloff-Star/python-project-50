@@ -1,4 +1,4 @@
-def get_normalise_string(string):
+def format_value(string):
     if isinstance(string, dict):
         return '[complex value]'
     elif isinstance(string, bool):
@@ -11,22 +11,23 @@ def get_normalise_string(string):
         return f"'{string}'"
 
 
-def plain_dict(diff, path=''):
-    differences = []
-    for i in diff:
-        nested_path = f"{path}.{i['key']}" if path else i['key']
-        if i['meaning'] == 'dicts':
-            differences.append(plain_dict(i['value'], nested_path))
-        if i['meaning'] == 'update':
-            differences.append(f"Property '{nested_path}' was updated. "
-                               f"From {get_normalise_string(i['old'])} "
-                               f"to {get_normalise_string(i['new'])}")
-        if i['meaning'] == 'deleted':
-            differences.append(f"Property '{nested_path}' was removed")
-        if i['meaning'] == 'added':
-            differences.append(f"Property '{nested_path}' was added "
-                               f"with value: {get_normalise_string(i['new'])}")
-    result = ''
-    for item in differences:
-        result += f'{item}\n'
-    return result.replace('\n\n', '').rstrip('\n')
+def convert_to_plain(diff):
+    def inner(object, path=''):
+        differences = []
+        for item in object:
+            nested_path = f"{path}.{item['key']}" if path else item['key']
+            if item['meaning'] == 'dicts':
+                differences.append(inner(item['value'], nested_path))
+
+            if item['meaning'] == 'update':
+                differences.append(f"Property '{nested_path}' was updated. "
+                                   f"From {format_value(item['old'])} "
+                                   f"to {format_value(item['new'])}")
+            if item['meaning'] == 'deleted':
+                differences.append(f"Property '{nested_path}' was removed")
+            if item['meaning'] == 'added':
+                differences.append(f"Property '{nested_path}' was added "
+                                   f"with value: {format_value(item['new'])}")
+        result = '\n'.join(differences)
+        return result
+    return inner(diff)

@@ -1,17 +1,16 @@
-from gendiff.scripts.search_diff import generate_diff
-from gendiff.formarter.formarter_yaml import get_convert_file_to_dict
-from gendiff.scripts.parser import parse
-from gendiff.formarter.stylish import stylish_dict, get_all_keys
-from gendiff.formarter.plain import plain_dict
-from gendiff.formarter.json import json_dict
+from gendiff.data.search_diff import generate_diff
+from gendiff.data.load_file import get_convert_file_to_dict
+from gendiff.data.parser import parse_args
+from gendiff.formarter.stylish import get_all_keys
+from gendiff.formarter.plain import convert_to_plain
+from gendiff.formarter.json import convert_to_json
 
 
 __all__ = (
     'generate_diff',
     'get_convert_file_to_dict',
-    'parse',
-    'stylish_dict',
+    'parse_args',
     'get_all_keys',
-    'plain_dict',
-    'json_dict'
+    'convert_to_plain',
+    'convert_to_json'
 )
