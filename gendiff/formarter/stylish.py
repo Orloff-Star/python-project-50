@@ -9,12 +9,12 @@ def format_value(string):
         return string
 
 
-def convert_to_stylish(diff):
+def build_diff(diff):
     differences = {}
     for item in diff:
         if item['meaning'] == 'dicts':
             differences[f"    {item['key']}"
-                        ] = convert_to_stylish(item['value'])
+                        ] = build_diff(item['value'])
         if item['meaning'] == 'identical':
             differences[f"    {item['key']}"
                         ] = format_value(item['value'])
@@ -57,3 +57,7 @@ def get_all_keys(my_dict):
                 if name[0:2] != '  ':
                     my_dict[f'    {key}'] = my_dict.pop(key)
     return get_format_dict(my_dict)
+
+
+def convert_to_stylish(diff):
+    return get_all_keys(build_diff(diff))

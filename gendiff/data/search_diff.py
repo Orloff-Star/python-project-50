@@ -1,4 +1,4 @@
-from gendiff.formarter.stylish import convert_to_stylish, get_all_keys
+from gendiff.formarter.stylish import convert_to_stylish
 from gendiff.data.comparison_dict import comparison_dict
 from gendiff.formarter.plain import convert_to_plain
 from gendiff.formarter.json import convert_to_json
@@ -14,4 +14,4 @@ def generate_diff(path_1, path_2, formarter='stylish'):
     elif formarter == 'json':
         return convert_to_json(result)
     else:
-        return get_all_keys(convert_to_stylish(result))
+        return convert_to_stylish(result)
