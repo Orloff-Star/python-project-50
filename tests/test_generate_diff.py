@@ -22,8 +22,8 @@ file1_yaml = 'tests/fixtures/file1.yaml'
 file2_yaml = 'tests/fixtures/file2.yaml'
 file1_json_investment = 'tests/fixtures/file1-big.json'
 file2_json_investment = 'tests/fixtures/file2-big.json'
-file1_yaml_investment = 'tests/fixtures/file1-big.yaml'
-file2_yaml_investment = 'tests/fixtures/file2-big.yaml'
+file1_yaml_investment = 'tests/fixtures/file1-big.yml'
+file2_yaml_investment = 'tests/fixtures/file2-big.yml'
 
 
 @pytest.mark.parametrize("file_1, file_2, formarter, expected_output",
