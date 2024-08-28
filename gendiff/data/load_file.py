@@ -18,9 +18,8 @@ def format_json(file_path):
 def convert_file_to_dict(file_path):
     result = ''
     file_name = os.path.basename(file_path)
-    _, ext = os.path.splitext(file_name)
-    if ext == '.yml' or ext == '.yaml':
+    if file_name[-4:] == '.yml' or file_name[-5:] == '.yaml':
         result = format_yaml(file_path)
-    elif ext == '.json':
+    elif file_name[-5:] == '.json':
         result = format_json(file_path)
     return dict(result)
