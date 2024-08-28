@@ -1,12 +1,12 @@
-def format_value(string):
-    if isinstance(string, bool):
-        return str(string).lower()
-    elif isinstance(string, int):
-        return str(string)
-    elif string is None:
+def format_value(value):
+    if isinstance(value, bool):
+        return str(value).lower()
+    elif isinstance(value, int):
+        return str(value)
+    elif value is None:
         return 'null'
     else:
-        return string
+        return value
 
 
 def build_diff(diff):
@@ -45,17 +45,20 @@ def get_format_dict(my_dict, depth=0):
 
 
 def get_all_keys(my_dict):
+    print(my_dict)
     if isinstance(my_dict, dict):
-        for key in my_dict.copy():
+        for key, _ in list(my_dict.items()):
             if not isinstance(my_dict[key], dict):
                 name = str(key)
                 if name[0:2] != '  ':
-                    my_dict[f'    {key}'] = my_dict.pop(key)
+                    my_dict[f'    {key}'] = my_dict[key]
+                    del my_dict[key]
             else:
                 get_all_keys(my_dict[key])
                 name = str(key)
                 if name[0:2] != '  ':
-                    my_dict[f'    {key}'] = my_dict.pop(key)
+                    my_dict[f'    {key}'] = my_dict[key]
+                    del my_dict[key]
     return get_format_dict(my_dict)
 
 
