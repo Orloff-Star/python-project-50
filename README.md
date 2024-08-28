@@ -10,10 +10,10 @@
 
 ### Code Climat: 
 
-[Link](<a href="https://codeclimate.com/github/Orloff-Star/python-project-50/maintainability"><img src="https://api.codeclimate.com/v1/badges/33303850e645948fbe9d/maintainability" /></a>)
+[![Maintainability](https://api.codeclimate.com/v1/badges/33303850e645948fbe9d/maintainability)](https://codeclimate.com/github/Orloff-Star/python-project-50/maintainability)
 
 ### Test Coverage :
-[Link](<a href="https://codeclimate.com/github/Orloff-Star/python-project-50/test_coverage"><img src="https://api.codeclimate.com/v1/badges/33303850e645948fbe9d/test_coverage" /></a>)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/33303850e645948fbe9d/test_coverage)](https://codeclimate.com/github/Orloff-Star/python-project-50/test_coverage)
 
 
 
