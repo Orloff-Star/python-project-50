@@ -51,7 +51,6 @@ def get_format_dict(my_dict, depth=0):
 
 
 def get_all_keys(my_dict):
-    print(my_dict)
     if isinstance(my_dict, dict):
         for key, _ in list(my_dict.items()):
             if not isinstance(my_dict[key], dict):
