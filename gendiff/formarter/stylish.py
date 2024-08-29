@@ -12,23 +12,29 @@ def format_value(value):
 def build_diff(diff):
     differences = {}
     for item in diff:
-        if item['meaning'] == 'dicts':
-            differences[f"    {item['key']}"
-                        ] = build_diff(item['value'])
-        if item['meaning'] == 'identical':
-            differences[f"    {item['key']}"
-                        ] = format_value(item['value'])
-        if item['meaning'] == 'update':
-            differences[f"  - {item['key']}"
-                        ] = format_value(item['old'])
-            differences[f"  + {item['key']}"
-                        ] = format_value(item['new'])
-        if item['meaning'] == 'deleted':
-            differences[f"  - {item['key']}"
-                        ] = format_value(item['old'])
-        if item['meaning'] == 'added':
-            differences[f"  + {item['key']}"
-                        ] = format_value(item['new'])
+        differences.update(search_fo_item(item))
+    return differences
+
+
+def search_fo_item(item):
+    differences = {}
+    if item['meaning'] == 'dicts':
+        differences[f"    {item['key']}"
+                    ] = build_diff(item['value'])
+    if item['meaning'] == 'identical':
+        differences[f"    {item['key']}"
+                    ] = format_value(item['value'])
+    if item['meaning'] == 'update':
+        differences[f"  - {item['key']}"
+                    ] = format_value(item['old'])
+        differences[f"  + {item['key']}"
+                    ] = format_value(item['new'])
+    if item['meaning'] == 'deleted':
+        differences[f"  - {item['key']}"
+                    ] = format_value(item['old'])
+    if item['meaning'] == 'added':
+        differences[f"  + {item['key']}"
+                    ] = format_value(item['new'])
     return differences
 
 
