@@ -42,7 +42,7 @@ def get_format_dict(my_dict, depth=0):
     if isinstance(my_dict, dict):
         result = '{\n'
         for key, val in my_dict.items():
-            result += f"{'    '*depth}{key}: "
+            result += f"{'    ' * depth}{key}: "
             result += get_format_dict(val, depth + 1) + '\n'
         result += '    ' * (depth) + '}'
     else:
