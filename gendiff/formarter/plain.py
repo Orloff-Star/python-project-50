@@ -11,12 +11,12 @@ def format_value(value):
         return f"'{value}'"
 
 
-def make_way_for_plain(object, path=''):
+def build_path(diff, path=''):
     differences = []
-    for item in object:
+    for item in diff:
         nested_path = f"{path}.{item['key']}" if path else item['key']
         if item['meaning'] == 'dicts':
-            differences.append(make_way_for_plain(item['value'], nested_path))
+            differences.append(build_path(item['value'], nested_path))
         if item['meaning'] == 'update':
             differences.append(f"Property '{nested_path}' was updated. "
                                f"From {format_value(item['old'])} "
@@ -31,5 +31,5 @@ def make_way_for_plain(object, path=''):
 
 
 def convert_to_plain(diff):
-    result = make_way_for_plain(diff)
+    result = build_path(diff)
     return result
